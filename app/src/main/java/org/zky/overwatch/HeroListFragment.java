@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -37,7 +40,14 @@ public class HeroListFragment extends Fragment {
     }
 
     private void initView(View view) {
-        RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);
+        ListView listView = (ListView) view.findViewById(R.id.lv);
+        listView.setAdapter(new MyHeroesAdapter(getContext(),TextContent.Heroes));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mCallback.onArticleSelected(position);
+            }
+        });
     }
 
     @Override
@@ -60,13 +70,5 @@ public class HeroListFragment extends Fragment {
         }
     }
 
-//    @Override
-//    public void onListItemClick(ListView l, View v, int position, long id) {
-//        // Notify the parent activity of selected item
-//        mCallback.onArticleSelected(position);
-//
-//        // Set the item as checked to be highlighted when in two-pane layout
-//        getListView().setItemChecked(position, true);
-//    }
 
 }

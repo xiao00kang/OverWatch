@@ -17,9 +17,10 @@ package org.zky.overwatch;
 
 public class TextContent {
 
-    static String[] Headlines = {
+    static String[] Heroes = {
         "Hero One",
-        "Hero Two"
+        "Hero Two",
+            "Hero Three"
     };
 
     static String[] Articles = {

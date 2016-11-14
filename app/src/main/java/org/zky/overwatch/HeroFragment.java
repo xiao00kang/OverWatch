@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,21 @@ import java.util.ArrayList;
 
 public class HeroFragment extends Fragment {
 
+    public static final String POSITION = "123";
+
+    int mCurrentPosition = -1;
+    private ArrayList<View> list;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        if (savedInstanceState != null) {
+            mCurrentPosition = savedInstanceState.getInt(POSITION);
+        }
+
+
         View view =inflater.inflate(R.layout.fragment_hero, container, false);
         initView(view);
         return view;
@@ -33,7 +46,7 @@ public class HeroFragment extends Fragment {
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tl);
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.vp);
-        ArrayList<View> list = new ArrayList<>();
+        list = new ArrayList<>();
         TextView textView =new TextView(getContext());
         textView.setText("技能");
         list.add(textView);
@@ -44,6 +57,25 @@ public class HeroFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
 
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Bundle args = getArguments();
+        if (args != null) {
+            updateView(args.getInt(POSITION));
+        } else if (mCurrentPosition != -1) {
+            updateView(mCurrentPosition);
+        }
+    }
+
+    public void updateView(int position){
+        Log.i("debug", "更新位置：" + position);
+
+        ((TextView)list.get(0)).setText("英雄"+(position+1)+"的技能");
+    }
+
     class MyPagerAdapter extends PagerAdapter {
 
         //界面列表
