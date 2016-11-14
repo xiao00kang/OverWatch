@@ -4,8 +4,13 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -14,7 +19,7 @@ import android.widget.ListView;
  * Created by zhan9 on 2016/11/11.
  */
 
-public class HeroListFragment extends ListFragment {
+public class HeroListFragment extends Fragment {
     OnHeadlineSelectedListener mCallback;
 
     // The container Activity must implement this interface so the frag can deliver messages
@@ -23,30 +28,22 @@ public class HeroListFragment extends ListFragment {
         public void onArticleSelected(int position);
     }
 
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view =inflater.inflate(R.layout.fragment_hero_list, container, false);
+        initView(view);
+        return view;
+    }
 
-        // We need to use a different list item layout for devices older than Honeycomb
-        int layout = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
-                android.R.layout.simple_list_item_activated_1 : android.R.layout.simple_list_item_1;
-
-        // Create an array adapter for the list view, using the TextContent headlines array
-        setListAdapter(new ArrayAdapter<String>(getActivity(), layout, TextContent.Headlines));
-
-
+    private void initView(View view) {
+        RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);
     }
 
     @Override
     public void onStart() {
         super.onStart();
 
-        // When in two-pane layout, set the listview to highlight the selected list item
-        // (We do this during onStart because at the point the listview is available.)
-        if (getFragmentManager().findFragmentById(R.id.article_fragment) != null) {
-            getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            getListView().setBackgroundResource(R.color.baseBackground);
-        }
     }
 
     @Override
@@ -63,13 +60,13 @@ public class HeroListFragment extends ListFragment {
         }
     }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        // Notify the parent activity of selected item
-        mCallback.onArticleSelected(position);
-
-        // Set the item as checked to be highlighted when in two-pane layout
-        getListView().setItemChecked(position, true);
-    }
+//    @Override
+//    public void onListItemClick(ListView l, View v, int position, long id) {
+//        // Notify the parent activity of selected item
+//        mCallback.onArticleSelected(position);
+//
+//        // Set the item as checked to be highlighted when in two-pane layout
+//        getListView().setItemChecked(position, true);
+//    }
 
 }
