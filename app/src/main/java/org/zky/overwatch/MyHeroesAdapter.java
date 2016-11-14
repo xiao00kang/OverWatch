@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -50,16 +51,18 @@ public class MyHeroesAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.recycler_view_item_view, parent, false);
             holder.tv = (TextView) convertView.findViewById(R.id.tv_name);
+            holder.iv = (ImageView) convertView.findViewById(R.id.iv_type);
             convertView.setTag(holder);
         }
-
-        holder.tv.setText(data[position]);
-
+        String hero = data[position];
+        holder.tv.setText(GetText.getString(GetText.getName(hero)));
+        holder.iv.setImageResource(GetText.getTypeImageRes(hero));
         return convertView;
     }
 
     class ViewHolder{
         public TextView tv;
+        public ImageView iv;
     }
 
 }

@@ -1,6 +1,5 @@
 package org.zky.overwatch;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -11,7 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -47,12 +46,17 @@ public class HeroFragment extends Fragment {
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.vp);
         list = new ArrayList<>();
-        TextView textView =new TextView(getContext());
-        textView.setText("技能");
-        list.add(textView);
-        TextView textView1 =new TextView(getContext());
-        textView1.setText("介绍");
-        list.add(textView1);
+
+        ImageView iv =new ImageView(getContext());
+        iv.setImageResource(R.drawable.soldier76_gaikuang);
+        iv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        list.add(iv);
+
+        ImageView iv1 =new ImageView(getContext());
+        iv1.setImageResource(R.drawable.soldier76_gushi);
+        iv1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        list.add(iv1);
+
         viewPager.setAdapter(new MyPagerAdapter(list, new String[]{"概况"," 故事"}));
         tabLayout.setupWithViewPager(viewPager);
 
@@ -73,7 +77,6 @@ public class HeroFragment extends Fragment {
     public void updateView(int position){
         Log.i("debug", "更新位置：" + position);
 
-        ((TextView)list.get(0)).setText("英雄"+(position+1)+"的技能");
     }
 
     class MyPagerAdapter extends PagerAdapter {

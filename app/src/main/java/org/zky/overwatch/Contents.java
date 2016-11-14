@@ -15,12 +15,12 @@
  */
 package org.zky.overwatch;
 
-public class TextContent {
+public class Contents {
 
     static String[] Heroes = {
-        "Hero One",
-        "Hero Two",
-            "Hero Three"
+        "soldier76_tuji",
+        "mccree_tuji",
+            "dva_zhongzhuang"
     };
 
     static String[] Articles = {

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">OverWatch</string>
+
+    <string name="soldier76">士兵76</string>
+    <string name="mccree">麦克雷</string>
+    <string name="dva">DVA</string>
 </resources>
