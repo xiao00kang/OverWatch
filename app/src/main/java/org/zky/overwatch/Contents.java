@@ -20,7 +20,9 @@ public class Contents {
     static String[] Heroes = {
         "soldier76_tuji",
         "mccree_tuji",
-            "dva_zhongzhuang"
+            "dva_zhongzhuang",
+            "mei_fangyu",
+            "mercy_zhiyuan"
     };
 
     static String[] Articles = {

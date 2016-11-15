@@ -1,5 +1,6 @@
 package org.zky.overwatch;
 
+import android.content.res.Configuration;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,7 +45,7 @@ public class HeroActivity extends AppCompatActivity implements HeroListFragment.
         HeroFragment heroFragment = (HeroFragment)
                 getSupportFragmentManager().findFragmentById(R.id.article_fragment);
 
-        if (heroFragment != null) {
+        if (heroFragment != null&&isScreenChange()) {
             // If article frag is available, we're in two-pane layout...
 
             // Call a method in the ArticleFragment to update its content
@@ -68,5 +69,21 @@ public class HeroActivity extends AppCompatActivity implements HeroListFragment.
             // Commit the transaction
             transaction.commit();
         }
+    }
+
+
+    private boolean isScreenChange() {
+
+        Configuration mConfiguration = this.getResources().getConfiguration(); //获取设置的配置信息
+        int ori = mConfiguration.orientation ; //获取屏幕方向
+
+        if(ori == mConfiguration.ORIENTATION_LANDSCAPE){
+
+            return true;
+        }else if(ori == mConfiguration.ORIENTATION_PORTRAIT){
+
+            return false;
+        }
+        return false;
     }
 }
