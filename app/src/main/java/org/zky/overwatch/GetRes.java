@@ -11,7 +11,7 @@ import android.util.Log;
  */
 
 
-public class GetText {
+public class GetRes {
 
     private static Resources sResources;
     private static String package_name;
@@ -29,6 +29,12 @@ public class GetText {
     @NonNull
     public static String getString(@StringRes int id, Object... formatArgs) {
         return sResources.getString(id, formatArgs);
+    }
+
+    public static int getContent(String s, String contentType){
+        String[] split = s.split("_");
+        int res = sResources.getIdentifier(split[0]+"_"+contentType, "drawable", package_name);
+        return res;
     }
 
     public static int getName(String s){

@@ -11,6 +11,6 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        GetText.initialize(this);
+        GetRes.initialize(this);
     }
 }

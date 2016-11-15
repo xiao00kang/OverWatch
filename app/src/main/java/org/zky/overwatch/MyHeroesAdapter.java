@@ -1,10 +1,6 @@
 package org.zky.overwatch;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,8 +51,8 @@ public class MyHeroesAdapter extends BaseAdapter {
             convertView.setTag(holder);
         }
         String hero = data[position];
-        holder.tv.setText(GetText.getString(GetText.getName(hero)));
-        holder.iv.setImageResource(GetText.getTypeImageRes(hero));
+        holder.tv.setText(GetRes.getString(GetRes.getName(hero)));
+        holder.iv.setImageResource(GetRes.getTypeImageRes(hero));
         return convertView;
     }
 

@@ -23,7 +23,7 @@ public class HeroFragment extends Fragment {
 
     public static final String POSITION = "123";
 
-    int mCurrentPosition = -1;
+    int mCurrentPosition = 0;
     private ArrayList<View> list;
 
 
@@ -47,15 +47,12 @@ public class HeroFragment extends Fragment {
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.vp);
         list = new ArrayList<>();
 
-        ImageView iv =new ImageView(getContext());
-        iv.setImageResource(R.drawable.soldier76_gaikuang);
-        iv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        list.add(iv);
-
-        ImageView iv1 =new ImageView(getContext());
-        iv1.setImageResource(R.drawable.soldier76_gushi);
-        iv1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        list.add(iv1);
+        View view1 = LayoutInflater.from(getContext()).inflate(R.layout.view_pager_item,null,false);
+        ((ImageView)view1.findViewById(R.id.iv_content)).setImageResource(GetRes.getContent(Contents.Heroes[mCurrentPosition],"gaikuang"));
+        View view2 = LayoutInflater.from(getContext()).inflate(R.layout.view_pager_item,null,false);
+        ((ImageView)view2.findViewById(R.id.iv_content)).setImageResource(GetRes.getContent(Contents.Heroes[mCurrentPosition],"gushi"));
+        list.add(view1);
+        list.add(view2);
 
         viewPager.setAdapter(new MyPagerAdapter(list, new String[]{"概况"," 故事"}));
         tabLayout.setupWithViewPager(viewPager);
