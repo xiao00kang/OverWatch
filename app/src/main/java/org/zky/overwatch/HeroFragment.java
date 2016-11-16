@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 /**
+ *
  * Created by zhan9 on 2016/11/11.
  */
 
@@ -26,10 +27,8 @@ public class HeroFragment extends Fragment {
 
     int mCurrentPosition = 0;
     private ArrayList<View> list;
-    private MyPagerAdapter adapter;
     private ViewPager viewPager;
 
-    private Fragment[] fragments;
     private View view1;
     private View view2;
 
@@ -61,7 +60,7 @@ public class HeroFragment extends Fragment {
         list.add(view1);
         list.add(view2);
 
-        viewPager.setAdapter(adapter = new MyPagerAdapter(list, new String[]{"概况", " 故事"}));
+        viewPager.setAdapter(new MyPagerAdapter(list, new String[]{"概况", " 故事"}));
         tabLayout.setupWithViewPager(viewPager);
 
     }
