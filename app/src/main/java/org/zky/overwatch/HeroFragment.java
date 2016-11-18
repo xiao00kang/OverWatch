@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,7 @@ public class HeroFragment extends Fragment {
     private Fragment[] fragments;
     private View view1;
     private View view2;
+    private TextView tv_hero_name;
 
 
     @Nullable
@@ -64,6 +66,7 @@ public class HeroFragment extends Fragment {
         viewPager.setAdapter(adapter = new MyPagerAdapter(list, new String[]{"概况", " 故事"}));
         tabLayout.setupWithViewPager(viewPager);
 
+        tv_hero_name = (TextView) view.findViewById(R.id.tv_hero_name);
     }
 
     @Override
@@ -80,6 +83,8 @@ public class HeroFragment extends Fragment {
 
     public void updateView(int position) {
         Log.i("debug", "更新位置：" + position);
+
+        tv_hero_name.setText(GetRes.getName(Contents.Heroes[position]));
         if (view1 != null && view2 != null) {
             ((ImageView) view1.findViewById(R.id.iv_gaikuang)).setImageResource(GetRes.getContent(Contents.Heroes[position], "gaikuang"));
             ((ImageView) view2.findViewById(R.id.iv_gushi)).setImageResource(GetRes.getContent(Contents.Heroes[position], "gushi"));
