@@ -22,6 +22,7 @@
     <ListView
         android:layout_marginTop="2dp"
         android:id="@+id/lv"
+        android:listSelector="@drawable/selector_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

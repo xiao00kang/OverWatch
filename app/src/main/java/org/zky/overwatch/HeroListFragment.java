@@ -33,14 +33,16 @@ public class HeroListFragment extends Fragment {
     }
 
     private void initView(View view) {
-        ListView listView = (ListView) view.findViewById(R.id.lv);
+        final ListView listView = (ListView) view.findViewById(R.id.lv);
         listView.setAdapter(new MyHeroesAdapter(getContext(), Contents.Heroes));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mCallback.onArticleSelected(position);
+                listView.setItemChecked(position,true);
             }
         });
+
     }
 
     @Override
