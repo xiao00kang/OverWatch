@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 
+import org.zky.overwatch.fragment.HeroFragment;
+import org.zky.overwatch.fragment.HeroListFragment;
+
 public class HeroActivity extends AppCompatActivity implements HeroListFragment.OnHeadlineSelectedListener {
 
     @Override
