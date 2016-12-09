@@ -17,10 +17,9 @@ package org.zky.overwatch;
 
 public class Contents {
 
-    //hero list
-    static String[] Heroes = {
-        "soldier76_tuji",
-        "mccree_tuji",
+    public static String[] Heroes = {
+            "soldier76_tuji",
+            "mccree_tuji",
             "dva_zhongzhuang",
             "mei_fangyu",
             "mercy_zhiyuan"

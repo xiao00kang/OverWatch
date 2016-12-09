@@ -1,4 +1,4 @@
-package org.zky.overwatch;
+package org.zky.overwatch.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -6,7 +6,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.util.Log;
 
+import org.zky.overwatch.R;
+
 /**
+ *
  * Created by zhan9 on 2016/11/14.
  */
 
@@ -45,7 +48,7 @@ public class GetRes {
 
     public static int getTypeImageRes(String s){
         String[] split = s.split("_");
-        int drawable=R.drawable.ic_tuji;
+        int drawable= R.drawable.ic_tuji;
 
         if (split.length>0){
             drawable = sResources.getIdentifier("ic_" + split[1], "drawable", package_name);

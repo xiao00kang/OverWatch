@@ -1,4 +1,4 @@
-package org.zky.overwatch;
+package org.zky.overwatch.widget;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.zky.overwatch.R;
+import org.zky.overwatch.utils.GetRes;
 
 /**
  * 包:org.zky.overwatch

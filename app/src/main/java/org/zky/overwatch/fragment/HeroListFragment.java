@@ -1,4 +1,4 @@
-package org.zky.overwatch;
+package org.zky.overwatch.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,18 +10,24 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import org.zky.overwatch.Contents;
+import org.zky.overwatch.R;
+import org.zky.overwatch.widget.MyHeroesAdapter;
+
 /**
  *
  * Created by zhan9 on 2016/11/11.
  */
 
 public class HeroListFragment extends Fragment {
+
+    int position_old = 0;
+
     OnHeadlineSelectedListener mCallback;
 
     // The container Activity must implement this interface so the frag can deliver messages
     public interface OnHeadlineSelectedListener {
-        /** Called by HeadlinesFragment when a list item is selected */
-        public void onArticleSelected(int position);
+        public void onHeroSelected(int position);
     }
 
     @Nullable
@@ -38,8 +44,18 @@ public class HeroListFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mCallback.onArticleSelected(position);
-                listView.setItemChecked(position,true);
+                mCallback.onHeroSelected(position);
+
+                //去除非当前item选择框
+                View item = listView.findViewWithTag(position_old);
+                if (item!=null){
+                    item.setBackgroundResource(R.drawable.shape_background_solid);
+
+                }
+                //设置当前item背景
+                view.setBackgroundResource(R.drawable.shape_background_stroken);
+                position_old = position;
+                view.setTag(position);
             }
         });
 
@@ -55,8 +71,7 @@ public class HeroListFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception.
+        // 确认activity实现了借口
         try {
             mCallback = (OnHeadlineSelectedListener) activity;
         } catch (ClassCastException e) {

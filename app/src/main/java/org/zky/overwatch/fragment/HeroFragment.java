@@ -1,11 +1,9 @@
-package org.zky.overwatch;
+package org.zky.overwatch.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -14,6 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.zky.overwatch.Contents;
+import org.zky.overwatch.R;
+import org.zky.overwatch.utils.GetRes;
 
 import java.util.ArrayList;
 
@@ -27,8 +29,6 @@ public class HeroFragment extends Fragment {
     public static final String POSITION = "123";
 
     int mCurrentPosition = 0;
-    private ArrayList<View> list;
-    private ViewPager viewPager;
 
     private View view1;
     private View view2;
@@ -52,8 +52,8 @@ public class HeroFragment extends Fragment {
     private void initView(View view) {
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tl);
 
-        viewPager = (ViewPager) view.findViewById(R.id.vp);
-        list = new ArrayList<>();
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.vp);
+        ArrayList<View> list = new ArrayList<>();
 
         view1 = LayoutInflater.from(getContext()).inflate(R.layout.view_pager_item, null, false);
         ((ImageView) view1.findViewById(R.id.iv_gaikuang)).setImageResource(GetRes.getContent(Contents.Heroes[mCurrentPosition], "gaikuang"));
